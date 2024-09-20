@@ -2,9 +2,9 @@
 
 namespace Elcomware\LocaleMaster;
 
+use Elcomware\LocaleMaster\Commands\LocaleMasterCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Elcomware\LocaleMaster\Commands\LocaleMasterCommand;
 
 class LocaleMasterServiceProvider extends PackageServiceProvider
 {

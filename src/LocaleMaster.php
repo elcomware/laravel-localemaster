@@ -7,23 +7,18 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
-class LocaleMaster {
-
+class LocaleMaster
+{
     //protected mixed $supportedLocales;
     protected mixed $currentLocale;
+
     protected mixed $numberFormatter;
+
     protected mixed $currencyFormatter;
 
-    public function __construct()
-    {
+    public function __construct() {}
 
-    }
-
-    public static function listLocales()
-    {
-
-
-    }
+    public static function listLocales() {}
 
     public static function setLocale($locale): void
     {
@@ -37,10 +32,7 @@ class LocaleMaster {
         }
     }
 
-    public static function formatNumber()
-    {
-
-    }
+    public static function formatNumber() {}
 
     public function getLocale(): string
     {

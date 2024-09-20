@@ -2,11 +2,11 @@
 
 // config for Elcomware/LocaleMaster
 return [
-    'default_locale'=>'en',
+    'default_locale' => 'en',
 
-    'supported_locales'=>[
+    'supported_locales' => [
         'en',
-        'fr'
-    ]
+        'fr',
+    ],
 
 ];

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 
 trait Translatable
 {
-
     public function getTranslatedAttribute($attribute)
     {
         $locale = App::getLocale();
