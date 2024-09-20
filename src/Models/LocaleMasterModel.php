@@ -2,21 +2,21 @@
 
 namespace Elcomware\LocaleMaster\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class LocaleMasterModel extends model
 {
-
     /**
      * @var int|mixed|string|null
      */
     public mixed $created_by;
+
     /**
      * @var int|mixed|string|null
      */
     public mixed $last_edited_by;
+
     /**
      * @var int|mixed
      */

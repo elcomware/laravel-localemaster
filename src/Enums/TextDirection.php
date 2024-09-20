@@ -10,11 +10,9 @@ enum TextDirection: string
     public static function getTextDirection(): array
     {
         return [
-          self::RTL->value,
-          self::LTR->value,
+            self::RTL->value,
+            self::LTR->value,
         ];
 
     }
-
-
 }

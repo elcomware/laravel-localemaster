@@ -2,12 +2,10 @@
 
 namespace Elcomware\LocaleMaster\Tests;
 
-
 use Elcomware\LocaleMaster\LocaleMaster;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-
 
 it("can set 'en' as locale", function () {
     //arrange

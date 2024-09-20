@@ -2,10 +2,10 @@
 
 namespace Elcomware\LocaleMaster\Tests;
 
+use Elcomware\LocaleMaster\LocaleMasterServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Elcomware\LocaleMaster\LocaleMasterServiceProvider;
 
 class TestCase extends Orchestra
 {
