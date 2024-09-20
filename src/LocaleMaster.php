@@ -2,10 +2,14 @@
 
 namespace Elcomware\LocaleMaster;
 
+use Elcomware\LocaleMaster\Models\Language;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Number;
+use NumberFormatter;
 
 class LocaleMaster {
 
@@ -16,12 +20,6 @@ class LocaleMaster {
 
     public function __construct()
     {
-
-    }
-
-    public static function listLocales()
-    {
-
 
     }
 
@@ -37,13 +35,50 @@ class LocaleMaster {
         }
     }
 
-    public static function formatNumber()
+    public static function getCurrentLocale(): string
     {
-
+        $locale =  App::getLocale();
+        return Language::where('code', $locale)->first();
     }
 
-    public function getLocale(): string
+
+    public static function getAllLocales(): Collection
     {
-        return App::getLocale();
+        return Language::all();
     }
+
+    public static function getActiveLocales(): Collection
+    {
+       return  Language::all()->reject(function (Language $lang) {
+            return $lang->is_active === false;
+        });
+    }
+    public static function getInActiveLocales(): Collection
+    {
+       return  Language::all()->reject(function (Language $lang) {
+            return $lang->is_active === true;
+        });
+    }
+
+    public function formatNumber($number): false|string
+    {
+        $locale = static::getCurrentLocale();
+       return Number::format(
+           number: $number,
+           precision: $locale->number_precision,
+           maxPrecision: $locale->number_max_precision,
+           locale:$locale->code
+       );
+    }
+
+    public function formatCurrency($amount, $currencyCode): false|string
+    {
+        $locale = static::getCurrentLocale();
+        return Number::currency(
+            number: $amount,
+            in: $locale->currency_symbol,
+            locale: $locale->code
+        );
+    }
+
 }
