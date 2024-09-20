@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "elcomware/laravel-localemaster",
+    "description": "Laravel LocaleMaster is designed to streamline the process of managing multiple locales in your Laravel application. It provides a robust set of tools to set the application locale, translate models using traits, and seamlessly switch between different locales. It's ideal for developers looking to build multilingual applications with ease.",
     "keywords": [
-        ":vendor_name",
+        "elcomware",
         "laravel",
-        ":package_slug"
+        "laravel-localemaster"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/elcomware/laravel-localemaster",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "elcomware",
+            "email": "elcomware@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,19 +35,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Elcomware\\LocaleMaster\\": "src/",
+            "Elcomware\\LocaleMaster\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Elcomware\\LocaleMaster\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "clear": "@php vendor/bin/testbench package:purge-laravel-localemaster --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
             "@composer run prepare",
@@ -73,10 +73,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Elcomware\\LocaleMaster\\LocaleMasterServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LocaleMaster": "Elcomware\\LocaleMaster\\Facades\\LocaleMaster"
             }
         }
     },

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Elcomware\LocaleMaster\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LocaleMasterCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-localemaster';
 
     public $description = 'My command';
 
