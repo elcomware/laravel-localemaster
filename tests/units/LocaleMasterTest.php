@@ -51,7 +51,7 @@ it("can NOT set 'others' as locale", function () {
     expect($carbonLocale)->not->toBe($locale);
 });
 
-it('can get all locales', function (){
+it('can get all locales', function () {
 
     $locales = LocaleMaster::getAllLocales();
 });

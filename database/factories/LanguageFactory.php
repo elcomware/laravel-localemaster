@@ -5,7 +5,6 @@ namespace Elcomware\LocaleMaster\Database\Factories;
 use Elcomware\LocaleMaster\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
 class LanguageFactory extends Factory
 {
     protected $model = User::class;
@@ -19,4 +18,3 @@ class LanguageFactory extends Factory
         ];
     }
 }
-
