@@ -16,6 +16,11 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Elcomware\\LocaleMaster\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'Workbench\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        );
+
     }
 
     protected function getPackageProviders($app): array
@@ -30,8 +35,9 @@ class TestCase extends Orchestra
         Config::set('database.default', 'testing');
 
         //$migration = include __DIR__.'/../database/migrations/create_laravel-localemaster_table.php.stub';
+        $migrationTest = include __DIR__.'/../database/migrations/create_test_table.php';
         $migration = include __DIR__.'/../database/migrations/create_localemaster_table.php';
-        $migration = include __DIR__.'/../database/migrations/create_test_table.php';
+        $migrationTest->up();
         $migration->up();
 
     }

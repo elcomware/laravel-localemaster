@@ -23,8 +23,10 @@ return new class extends Migration
         Schema::create('test_models', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->json('field1')->nullable();
+            $table->json('field2')->nullable();
+            $table->unsignedBigInteger('creator')->nullable();
+            $table->unsignedBigInteger('last_editor')->nullable();
             $table->unsignedBigInteger('version')->default(1);
             $table->timestamps();
         });

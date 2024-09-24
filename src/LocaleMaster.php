@@ -2,83 +2,68 @@
 
 namespace Elcomware\LocaleMaster;
 
-use Elcomware\LocaleMaster\Models\Language;
+use Elcomware\LocaleMaster\Models\Locale;
+use Elcomware\LocaleMaster\Traits\Formatable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Number;
 
 class LocaleMaster
 {
-    //protected mixed $supportedLocales;
-    protected mixed $currentLocale;
-
-    protected mixed $numberFormatter;
-
-    protected mixed $currencyFormatter;
+    use Traits\Translatable;
+    use Traits\HasModels;
+    use Traits\Configurations;
+    use Traits\Formatable;
 
     public function __construct() {}
 
-    public static function setLocale($locale): void
+    public static function setLocale(string $lang): void
     {
-        $defaultLocale = Config::get('localemaster.default_locale', 'en');
-        $supportedLocales = Config::get('localemaster.supported_locales', $defaultLocale);
 
-        if (in_array($locale, $supportedLocales)) {
-            App::setLocale($locale);
-            Session::put('locale', $locale);
-            Carbon::setLocale($locale);
-        }
+        // Fetch all active languages from the database
+        //$activeLanguages = Locale::where('is_active', true); // Get only the codes
+        $activeLanguages = Locale::where('is_active', true)->where('code', $lang)->pluck('code');
+
+        //if locale not found, get default locale
+        $appLocale = $activeLanguages[0] ?? LocaleMaster::defaultLocale();
+
+        //set locales
+        App::setLocale($appLocale);
+        Session::put('locale', $appLocale);
+        Carbon::setLocale($appLocale);
+
     }
 
-    public static function getCurrentLocale(): string
+    public static function getCurrentLocale()
     {
         $locale = App::getLocale();
 
-        return Language::where('code', $locale)->first();
+        return Locale::where('code', $locale)->first();
+    }
+
+     public static function getOneLocale(Locale $lang)
+    {
+        return Locale::where('code', $lang->code)
+            ->where('name',$lang->name)
+            ->first();
     }
 
     public static function getAllLocales(): Collection
     {
-        return Language::all();
+        return Locale::all();
     }
 
     public static function getActiveLocales(): Collection
     {
-        return Language::all()->reject(function (Language $lang) {
-            return $lang->is_active === false;
-        });
+        return Locale::where('is_active', true)->get();
     }
 
     public static function getInActiveLocales(): Collection
     {
-        return Language::all()->reject(function (Language $lang) {
-            return $lang->is_active === true;
-        });
+        return Locale::where('is_active', false)->get();
+
     }
 
-    public function formatNumber($number): false|string
-    {
-        $locale = static::getCurrentLocale();
 
-        return Number::format(
-            number: $number,
-            precision: $locale->number_precision,
-            maxPrecision: $locale->number_max_precision,
-            locale: $locale->code
-        );
-    }
-
-    public function formatCurrency($amount, $currencyCode): false|string
-    {
-        $locale = static::getCurrentLocale();
-
-        return Number::currency(
-            number: $amount,
-            in: $locale->currency_symbol,
-            locale: $locale->code
-        );
-    }
 }

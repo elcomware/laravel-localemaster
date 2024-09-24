@@ -1,5 +1,6 @@
 {
     "name": "elcomware/laravel-localemaster",
+    "version": "1.0.0",
     "description": "Laravel LocaleMaster is designed to streamline the process of managing multiple locales in your Laravel application. It provides a robust set of tools to set the application locale, translate models using traits, and seamlessly switch between different locales. It's ideal for developers looking to build multilingual applications with ease.",
     "keywords": [
         "elcomware",
@@ -19,7 +20,6 @@
         "php": "^8.2",
         "spatie/laravel-package-tools": "^1.16",
         "illuminate/contracts": "^10.0||^11.0"
-
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -38,7 +38,6 @@
         "psr-4": {
             "Elcomware\\LocaleMaster\\": "src/",
             "Elcomware\\LocaleMaster\\Database\\Factories\\": "database/factories/"
-
         }
     },
     "autoload-dev": {
@@ -49,7 +48,6 @@
             "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
-
     "scripts": {
         "post-autoload-dump": [
             "@clear",
@@ -78,7 +76,6 @@
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ]
     },
-
     "config": {
         "sort-packages": true,
         "allow-plugins": {
