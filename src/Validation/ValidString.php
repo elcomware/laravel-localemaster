@@ -2,26 +2,22 @@
 
 namespace Elcomware\LocaleMaster\Validation;
 
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isNull;
-
 class ValidString
 {
     public static function check(string $value): bool
     {
-      return  self::checker($value);
+        return self::checker($value);
 
     }
 
     public static function checkArray(array $input): bool
     {
-        if ( !empty($input)) {
-            foreach ($input as $value){
+        if (! empty($input)) {
+            foreach ($input as $value) {
                 return self::checker($value);
             }
 
         }
-
 
         return false;
     }
@@ -35,13 +31,12 @@ class ValidString
         }
 
         // Check if the input is a string
-        if (!is_string($value)) {
+        if (! is_string($value)) {
             return false; // Invalid: input is not a string
         }
 
         // Trim whitespace from the input
         $value = trim($value);
-
 
         // Check if the input is empty
         if (empty($value)) {
@@ -69,5 +64,4 @@ class ValidString
         // If all checks pass, return true
         return true;
     }
-
 }

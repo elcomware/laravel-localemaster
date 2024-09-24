@@ -2,19 +2,14 @@
 
 namespace Elcomware\LocaleMaster\Traits;
 
-
 use Elcomware\LocaleMaster\Exceptions\ModelNotFoundException;
 use Elcomware\LocaleMaster\LocaleMaster;
 use Illuminate\Support\Facades\Log;
 
 trait HasModels
 {
-
-
     /**
      * Get a new instance of the user model.
-     *
-     * @return mixed
      */
     public static function newUserModel(): mixed
     {
@@ -25,6 +20,7 @@ trait HasModels
         } catch (\Exception $e) {
             // Handle the exception (e.g., log the error, display a message)
             Log::error($e->getMessage());
+
             return $e;
         }
 
@@ -33,8 +29,6 @@ trait HasModels
 
     /**
      * Get a new instance of the permission model.
-     *
-     * @return mixed
      */
     public static function newPermissionModel(): mixed
     {
@@ -45,13 +39,12 @@ trait HasModels
         } catch (\Exception $e) {
             // Handle the exception (e.g., log the error, display a message)
             Log::error($e->getMessage());
+
             return $e;
         }
 
         return $newModel;
     }
-
-
 }
 
 /**
@@ -68,4 +61,3 @@ function getModel(string $model)
         throw new ModelNotFoundException($model);
     }
 }
-

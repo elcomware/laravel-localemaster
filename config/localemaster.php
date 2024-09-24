@@ -4,7 +4,7 @@
 
 return [
 
-    'defaults'=>[
+    'defaults' => [
         'locale' => env('LOCALE_MASTER_DEFAULT', 'en'),
         'locales' => [
             'code' => env('LOCALE_CODE', 'en'),
@@ -21,22 +21,22 @@ return [
         ],
     ],
 
-    'tables'=>[
-        'locale'=>'locales'
+    'tables' => [
+        'locale' => 'locales',
     ],
 
-    'models'=> [
-        'user'=>'App\\Models\\User',
-        'permission'=>'App\\Models\\Permission',
+    'models' => [
+        'user' => 'App\\Models\\User',
+        'permission' => 'App\\Models\\Permission',
     ],
 
-    'permissions'=>[
+    'permissions' => [
         //key => value (in data base)
-        'create'=>'create',
-        'viewAny'=>'viewAny',
-        'view'=>'view',
-        'update'=>'update',
-        'delete'=>'delete',
-    ]
+        'create' => 'create',
+        'viewAny' => 'viewAny',
+        'view' => 'view',
+        'update' => 'update',
+        'delete' => 'delete',
+    ],
 
 ];

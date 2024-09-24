@@ -6,7 +6,6 @@ use Elcomware\LocaleMaster\Models\Locale;
 
 class LocaleMasterActions
 {
-
     public function getAll(): \Illuminate\Database\Eloquent\Collection
     {
         return Locale::all();
@@ -15,7 +14,7 @@ class LocaleMasterActions
     public function getOne(Locale $lang)
     {
         return Locale::where('code', $lang->code)
-            ->where('name',$lang->name)->first();
+            ->where('name', $lang->name)->first();
     }
 
     public function update(Locale $lang)

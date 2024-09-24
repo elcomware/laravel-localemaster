@@ -11,7 +11,6 @@ class LocalePolicy implements \Elcomware\LocaleMaster\Contracts\LocalePolicy
 {
     use HandlesAuthorization;
 
-
     public function create(LocaleUser $user, Locale $locale): bool
     {
         return $user->hasLocalePermission(LocaleMaster::permissions()['create']);

@@ -10,12 +10,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 
-
 class LocaleController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $locales= Locale::all();
+        $locales = Locale::all();
+
         return view('locale.index', compact('locales'));
     }
 
@@ -66,7 +66,5 @@ class LocaleController extends Controller
         // Redirect back to the previous page
         return redirect()->back();
 
-
     }
-
 }

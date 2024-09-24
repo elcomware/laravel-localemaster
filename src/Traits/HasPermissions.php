@@ -19,5 +19,4 @@ trait HasPermissions
     {
         return $this->belongsToMany(LocaleMaster::newPermissionModel()::class);
     }
-
 }

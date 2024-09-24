@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 trait Configurations
 {
-
     public static array $permissions;
 
     public static function defaultLocales()
@@ -60,14 +59,10 @@ trait Configurations
         return Config::get('localemaster.models.permission', 'App\\Models\\Permission');
     }
 
-
     public static function permissions()
     {
         self::$permissions = Config::get('localemaster.permissions');
 
         return self::$permissions;
     }
-
-
-
 }

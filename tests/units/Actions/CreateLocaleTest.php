@@ -4,22 +4,20 @@ use Elcomware\LocaleMaster\Actions\CreateLocale;
 use Elcomware\LocaleMaster\Events\LocaleCreated;
 use Elcomware\LocaleMaster\Events\LocaleCreating;
 use Elcomware\LocaleMaster\Exceptions\ExceptionCodes;
+use Elcomware\LocaleMaster\Models;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Auth\Access\AuthorizationException;
-use Elcomware\LocaleMaster\Models;
+use Illuminate\Support\Facades\Gate;
 use Mockery\MockInterface;
 use Workbench\App\Models\User;
-
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
     $this->user = \Workbench\App\Models\User::factory()->create();
     Auth::login($this->user);
-    $this->createLocale = new CreateLocale();
+    $this->createLocale = new CreateLocale;
 });
 afterEach(function () {
     Mockery::close();
@@ -44,7 +42,6 @@ it('creates a locale successfully', function () {
     ];
 
     $locale = $this->createLocale->create($this->user, $input);
-
 
     expect($locale)->toBeInstanceOf(Models\Locale::class)
         ->and($locale)->save()
@@ -77,12 +74,10 @@ it('throws an authorization exception when unauthorized', function () {
         ->andReturnSelf();
     Gate::shouldReceive('allows')
         ->once()
-        ->with('create',Models\Locale::class)
+        ->with('create', Models\Locale::class)
         ->andReturn(false);
 
-
     $result = $this->createLocale->create($user, $input);
-
 
     expect($result)->toBeInstanceOf(Exception::class)
         ->and($result->getCode())->toBe(ExceptionCodes::ACTION_NOT_AUTHORIZED);
@@ -104,16 +99,14 @@ it('handles exceptions during locale creation', function () {
 
     // Simulate an exception during creation
 
-     $mock =  $this->partialMock(Models\Locale::class,function (MockInterface $mock) {
-         global $input;
-         $mock->shouldReceive('create')
-             ->once()->with($input)->andThrow(new Exception('Database Error'));
-     });
-
+    $mock = $this->partialMock(Models\Locale::class, function (MockInterface $mock) {
+        global $input;
+        $mock->shouldReceive('create')
+            ->once()->with($input)->andThrow(new Exception('Database Error'));
+    });
 
     $result = $this->createLocale->create($this->user, $input);
 
     expect($result)->toBeInstanceOf(Exception::class)
         ->and($result->getMessage())->toBe('Database Error');
-})->skip('temporarily unavailable');;
-
+})->skip('temporarily unavailable');

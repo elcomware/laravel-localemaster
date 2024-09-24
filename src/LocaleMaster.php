@@ -3,7 +3,6 @@
 namespace Elcomware\LocaleMaster;
 
 use Elcomware\LocaleMaster\Models\Locale;
-use Elcomware\LocaleMaster\Traits\Formatable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
@@ -11,10 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class LocaleMaster
 {
-    use Traits\Translatable;
-    use Traits\HasModels;
     use Traits\Configurations;
     use Traits\Formatable;
+    use Traits\HasModels;
+    use Traits\Translatable;
 
     public function __construct() {}
 
@@ -42,10 +41,10 @@ class LocaleMaster
         return Locale::where('code', $locale)->first();
     }
 
-     public static function getOneLocale(Locale $lang)
+    public static function getOneLocale(Locale $lang)
     {
         return Locale::where('code', $lang->code)
-            ->where('name',$lang->name)
+            ->where('name', $lang->name)
             ->first();
     }
 
@@ -64,6 +63,4 @@ class LocaleMaster
         return Locale::where('is_active', false)->get();
 
     }
-
-
 }

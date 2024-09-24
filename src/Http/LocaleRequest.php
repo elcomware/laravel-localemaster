@@ -43,5 +43,4 @@ class LocaleRequest extends FormRequest
             // Add other custom messages as needed
         ];
     }
-
 }

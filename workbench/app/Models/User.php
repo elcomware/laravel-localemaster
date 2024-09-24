@@ -48,6 +48,6 @@ class User extends Authenticatable implements LocaleUser
 
     public function hasLocalePermission(string $permission): bool
     {
-       return true;
+        return true;
     }
 }

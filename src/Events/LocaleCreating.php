@@ -10,8 +10,6 @@ class LocaleCreating
 
     /**
      * The team owner.
-     *
-     * @var mixed
      */
     public mixed $creator;
 

@@ -13,15 +13,12 @@ abstract class LocaleEvent
 
     /**
      * The team instance.
-     *
-     * @var Locale
      */
     public Locale $locale;
 
     /**
      * Create a new event instance.
      *
-     * @param  Locale  $locale
      * @return void
      */
     public function __construct(Locale $locale)

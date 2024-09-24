@@ -1,6 +1,5 @@
 <?php
 
-
 use Elcomware\LocaleMaster\Http\LocaleController;
 use Illuminate\Support\Facades\Route;
 

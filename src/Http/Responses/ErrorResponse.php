@@ -10,7 +10,6 @@ class ErrorResponse
     {
         try {
 
-
             // Attempt to create the model instance
             $model = $object::create($input);
 
@@ -19,14 +18,13 @@ class ErrorResponse
 
         } catch (QueryException $e) {
             // Handle database errors
-            return response()->json(['success' => false, 'error' => 'Database error: ' . $e->getMessage()], 500);
+            return response()->json(['success' => false, 'error' => 'Database error: '.$e->getMessage()], 500);
         } catch (\InvalidArgumentException $e) {
             // Handle invalid input
             return response()->json(['success' => false, 'error' => $e->getMessage()], 400);
         } catch (\Exception $e) {
             // Handle any other types of exceptions
-            return response()->json(['success' => false, 'error' => 'An unexpected error occurred: ' . $e->getMessage()], 500);
+            return response()->json(['success' => false, 'error' => 'An unexpected error occurred: '.$e->getMessage()], 500);
         }
     }
-
 }

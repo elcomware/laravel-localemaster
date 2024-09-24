@@ -7,7 +7,6 @@ use Elcomware\LocaleMaster\Http\LocaleMiddleware;
 use Elcomware\LocaleMaster\Models\Locale;
 use Elcomware\LocaleMaster\Policies\LocalePolicy;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -30,18 +29,16 @@ class LocaleMasterServiceProvider extends PackageServiceProvider
             ->hasCommand(LocaleMasterCommand::class);
     }
 
-
     public function bootingPackage(): void
     {
         //parent::bootingPackage();
 
         Gate::policy(Locale::class, LocalePolicy::class);
 
-
         /** @var Router $router */
         $router = $this->app['router'];
         $router->prependMiddlewareToGroup(
-                'web', LocaleMiddleware::class
-            )->aliasMiddleware('locale', LocaleMiddleware::class);
+            'web', LocaleMiddleware::class
+        )->aliasMiddleware('locale', LocaleMiddleware::class);
     }
 }

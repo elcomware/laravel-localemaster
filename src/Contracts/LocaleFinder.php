@@ -2,7 +2,4 @@
 
 namespace Elcomware\LocaleMaster\Contracts;
 
-interface LocaleFinder
-{
-
-}
+interface LocaleFinder {}
